@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { IsEmail } from "class-validator";
 
 @Entity("user")
@@ -39,4 +45,14 @@ export class Users {
 
   @Column("varchar")
   country: string;
+
+  @BeforeInsert()
+  checkFieldsBeForeInsert() {
+    this.email = this.email.toLowerCase().trim();
+  }
+
+  @BeforeUpdate()
+  checkFieldsBeforeInsert() {
+    this.checkFieldsBeForeInsert();
+  }
 }
