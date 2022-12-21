@@ -5,7 +5,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { IsEmail } from "class-validator";
 
 @Entity("user")
 export class Users {
